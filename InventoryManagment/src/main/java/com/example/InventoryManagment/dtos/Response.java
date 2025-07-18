@@ -5,6 +5,7 @@ import com.example.InventoryManagment.models.User;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -41,4 +42,5 @@ public class Response {
     private List<TransactionDTO> transactions;
 
     private final LocalDateTime timestamp = LocalDateTime.now();
+
 }

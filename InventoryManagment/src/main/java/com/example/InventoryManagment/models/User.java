@@ -9,11 +9,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Data
 @Table(name = "users")
-@AllArgsConstructor
-@NoArgsConstructor
 public class User {
 
     @Id
@@ -38,7 +38,7 @@ public class User {
     private List<Transaction> transactions;
 
     @Enumerated(EnumType.STRING)
-    private UserRole user;
+    private UserRole role;
 
     private final LocalDateTime createAt = LocalDateTime.now();
 
@@ -51,7 +51,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", phoneNumber=" + phoneNumber +
                 ", transaction=" + transactions +
-                ", user=" + user +
+                ", role=" + role +
                 ", createAt=" + createAt +
                 '}';
     }
