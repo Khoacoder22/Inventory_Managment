@@ -18,19 +18,23 @@ import java.util.function.Function;
 @Slf4j
 public class JwtUtils {
 
+    //bien thoi gian token hết hạn
     private static final long EXPIRATION_TIME_IN_MILLISEC = 1000L * 60L * 60L * 24L * 30L * 6L;
 
     private SecretKey key;
 
+    //khai baáo khóa bí mật
     @Value("${secretJwtString}")
     private String secretJwtString;
 
+    // tạo chuoỗi khóa
     @PostConstruct
     private void init(){
         byte[] keyByte = secretJwtString.getBytes(StandardCharsets.UTF_8);
         this.key = new SecretKeySpec(keyByte, "HmacSHA256");
     }
 
+    // taạo token mới
     public String generateToken(String email){
         return Jwts.builder()
                 .subject(email)
@@ -40,6 +44,7 @@ public class JwtUtils {
                 .compact();
     }
 
+    // lấy user tu token
     public String getUsernameFromToken(String token){
         return extractClaim(token, Claims::getSubject);
     }
