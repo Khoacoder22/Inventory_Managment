@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,6 +18,7 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class UserDTO {
 
     private Long id;
@@ -30,9 +32,9 @@ public class UserDTO {
 
     private int phoneNumber;
 
-    private List<Transaction> transactions;
+    private List<Transaction> Transactions;
 
-    private UserRole user;
+    private UserRole role;
 
     private LocalDateTime createAt;
 
