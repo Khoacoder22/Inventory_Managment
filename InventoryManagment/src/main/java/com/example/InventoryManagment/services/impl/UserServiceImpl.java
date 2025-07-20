@@ -12,23 +12,24 @@ import com.example.InventoryManagment.models.User;
 import com.example.InventoryManagment.repository.UserRepository;
 import com.example.InventoryManagment.security.JwtUtils;
 import com.example.InventoryManagment.services.UserService;
+import lombok.Builder;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @Slf4j
+@Builder
+@Data
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
@@ -50,6 +51,7 @@ public class UserServiceImpl implements UserService {
                 .name(registerRequest.getName())
                 .email(registerRequest.getEmail())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
+                .phoneNumber(registerRequest.getPhoneNumber())
                 .role(role)
                 .build();
 
@@ -73,7 +75,7 @@ public class UserServiceImpl implements UserService {
         return Response.builder()
                 .status(200)
                 .message("User logged in successfully")
-                .role(user.getRole())
+                .Role(user.getRole())
                 .token(token)
                 .expirationTime("6 months")
                 .build();
@@ -136,7 +138,7 @@ public class UserServiceImpl implements UserService {
         User existingUser = userRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
 
         if(userDTO.getEmail() != null) existingUser.setEmail(userDTO.getEmail());
-        if(userDTO.getPhoneNumber() != 0) existingUser.setPhoneNumber(userDTO.getPhoneNumber());
+        if(userDTO.getPhoneNumber() != 0) existingUser.setPhoneNumber(String.valueOf(userDTO.getPhoneNumber()));
         if(userDTO.getName() != null) existingUser.setName(userDTO.getName());
         if(userDTO.getRole() != null) existingUser.setRole(userDTO.getRole());
 

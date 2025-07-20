@@ -1,44 +1,28 @@
 package com.example.InventoryManagment.controller;
 
+import com.example.InventoryManagment.dtos.LoginRequest;
+import com.example.InventoryManagment.dtos.RegisterRequest;
 import com.example.InventoryManagment.dtos.Response;
-import com.example.InventoryManagment.dtos.UserDTO;
 import com.example.InventoryManagment.services.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/auth")
+@RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthorController {
 
-    private final UserService userService;
+   private final UserService userService;
 
-    @GetMapping("/all")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<Response> getAllUser(){
-        return ResponseEntity.ok(userService.getAllUser());
-    }
+   @PostMapping("/register")
+    public ResponseEntity<Response> registerUser(@RequestBody @Valid RegisterRequest registerRequest){
+       return ResponseEntity.ok(userService.registerUser(registerRequest));
+   }
 
-    @PostMapping("/{id}")
-    public ResponseEntity<Response> loginUser(@PathVariable Long id){
-        return ResponseEntity.ok(userService.getUserById(id));
-    }
-
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Response> updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO){
-        return ResponseEntity.ok(userService.updateUser(id, userDTO));
-    }
-
-    @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<Response> deleteUser(@PathVariable Long id){
-        return ResponseEntity.ok(userService.deleteUser(id));
-    }
-
-    @GetMapping("/getTransaction/{id}")
-    public ResponseEntity<Response> getTransaction(@PathVariable Long id){
-        return ResponseEntity.ok(userService.getUserTransaction(id));
-    }
+   @PostMapping("/login")
+   public ResponseEntity<Response> loginUser(@RequestBody @Valid LoginRequest registerRequest){
+       return ResponseEntity.ok(userService.loginUser(registerRequest));
+   }
 }

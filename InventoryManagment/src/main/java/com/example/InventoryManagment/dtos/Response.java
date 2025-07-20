@@ -21,7 +21,7 @@ public class Response {
 
     //for login
     private String token;
-    private UserRole role;
+    private UserRole Role;
     private String expirationTime;
 
     //pagination

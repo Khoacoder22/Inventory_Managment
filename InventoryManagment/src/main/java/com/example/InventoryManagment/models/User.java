@@ -32,9 +32,9 @@ public class User {
 
     @Column(name = "phone_number")
     @NotBlank(message = "Is required")
-    private int phoneNumber;
+    private String phoneNumber;
 
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "user")
     private List<Transaction> transactions;
 
     @Enumerated(EnumType.STRING)

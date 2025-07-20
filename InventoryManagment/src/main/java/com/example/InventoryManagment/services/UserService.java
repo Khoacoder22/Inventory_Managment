@@ -6,7 +6,7 @@ import com.example.InventoryManagment.dtos.RegisterRequest;
 import com.example.InventoryManagment.dtos.Response;
 import com.example.InventoryManagment.dtos.UserDTO;
 import com.example.InventoryManagment.models.User;
-import org.springframework.stereotype.Repository;
+
 
 public interface UserService {
 
