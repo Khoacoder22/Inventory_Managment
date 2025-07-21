@@ -1,13 +1,10 @@
 package com.example.InventoryManagment.security;
 
-import com.example.InventoryManagment.exception.CustomAccessDenialHandler;
-import com.example.InventoryManagment.exception.CustomAuthenticationEntryPoint;
+import com.example.InventoryManagment.exception.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -30,7 +27,7 @@ public class SecurityConfig {
     private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
     private final CustomAccessDenialHandler customAccessDenialHandler;
 
-    //    AuthFilter Bộ lọc JWT của bạn – kiểm tra token từ request và xác thực người dùng.
+    //   AuthFilter Bộ lọc JWT của bạn – kiểm tra token từ request và xác thực người dùng.
     // CustomAuthenticationEntryPoint Xử lý khi người dùng chưa đăng nhập mà đòi truy cập (401 Unauthorized).
     // CustomAccessDenialHandler	Xử lý khi người dùng không đủ quyền (403 Forbidden).
     @Bean
