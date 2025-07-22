@@ -10,9 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -55,8 +52,9 @@ public class AuthFilter extends OncePerRequestFilter {
 
     // lấy token từ header nếu có định dạng "Bearer <token>"
     private String getTokenFromRequest(HttpServletRequest request){
-        String token = request.getHeader("Authorize");
+        String token = request.getHeader("Authorization");
         if(token != null && token.startsWith("Bearer")){
+            System.out.println("Token nhận được: " + token);
             return token.substring(7);
         }
         return null;
