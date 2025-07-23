@@ -31,33 +31,53 @@ public class AuthFilter extends OncePerRequestFilter {
 
         if (token != null) {
             String email = jwtUtils.getUsernameFromToken(token);
-            UserDetails userDetails = customerDetailsService.loadUserByUsername(email);
+            log.info("Email from token: {}", email);
 
-            if (StringUtils.hasText(email) && jwtUtils.isTokenValid(token, userDetails)) {
-                log.info("Valid Token, {}", email);
+            try {
+                UserDetails userDetails = customerDetailsService.loadUserByUsername(email);
+                log.info("User loaded from DB: {}", userDetails.getUsername());
 
-                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, userDetails.getAuthorities()
-                );
-                authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                if (StringUtils.hasText(email) && jwtUtils.isTokenValid(token, userDetails)) {
+                    if (!email.equals(userDetails.getUsername())) {
+                        log.warn("Token username and DB username do not match. Token email: [{}], DB email: [{}]",
+                                email, userDetails.getUsername());
+                    } else {
+                        log.info("Token is valid and matches user: {}", email);
+
+                        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                                userDetails, null, userDetails.getAuthorities());
+                        authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+
+                        log.info("SecurityContext authentication set for user: {}", email);
+                    }
+                } else {
+                    log.warn("Invalid token or token validation failed. Token: [{}], Email: [{}]", token, email);
+                }
+
+            } catch (Exception e) {
+                log.error("Error loading user or validating token. Email: [{}], Exception: {}", email, e.getMessage());
             }
+        } else {
+            log.warn("Authorization header is missing or malformed");
         }
-        try{
-            filterChain.doFilter(request, response);
-        } catch(Exception e){
-            log.error("Exception occured in AuthFilter: " + e.getMessage());
-        }
+
+        filterChain.doFilter(request, response);
     }
+
 
     // lấy token từ header nếu có định dạng "Bearer <token>"
     private String getTokenFromRequest(HttpServletRequest request){
         String token = request.getHeader("Authorization");
-        if(token != null && token.startsWith("Bearer")){
-            System.out.println("Token nhận được: " + token);
-            return token.substring(7);
+        if(token != null && token.startsWith("Bearer ")) {
+            log.info("Authorization Header: {}", token);
+            String jwt = token.substring(7);
+            log.info("Token after cut: {}", jwt);
+            return jwt;
         }
+        log.warn("No valid Authorization header found.");
         return null;
     }
+
 
 }
