@@ -30,21 +30,16 @@ public class Product {
     @NotBlank(message = "is required")
     private String sku;
 
-    @NotBlank(message = "is required")
     @Positive(message = "price is not negative")
     private Long price;
 
-    @NotBlank(message = "is required")
     @Min(value = 0, message = "quantity cannot be negative")
     private int stockQuantity;
 
-    @NotBlank(message = "is required")
     private String description;
 
-    @NotBlank(message = "is required")
     private String imageURL;
 
-    @NotBlank(message = "is required")
     private final LocalDateTime createAt = LocalDateTime.now();
 
     @ManyToOne

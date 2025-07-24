@@ -44,6 +44,8 @@ public class ProductServicesImpl implements ProductServices {
                 .sku(productDTO.getSku())
                 .price(productDTO.getPrice())
                 .description(productDTO.getDescription())
+                .stockQuantity(productDTO.getStockQuantity())
+                .category(category)
                 .build();
 
         if(multipartFile != null && !multipartFile.isEmpty()){

@@ -83,7 +83,7 @@ public class SupplierImpl implements SupplierService {
                 .orElseThrow(() -> new NotFoundException("Not found"));
 
         if(supplierDTO.getName() != null) existingSupplier.setName(supplierDTO.getName());
-        if(supplierDTO.getContactInfo() != null) existingSupplier.setContactInfor(supplierDTO.getContactInfo());
+        if(supplierDTO.getContactInfo() != null) existingSupplier.setContactInfo(supplierDTO.getContactInfo());
         if(supplierDTO.getAddress() != null) existingSupplier.setAddress(supplierDTO.getAddress());
 
         supplierRepository.save(existingSupplier);

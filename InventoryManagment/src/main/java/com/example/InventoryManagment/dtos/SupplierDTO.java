@@ -20,8 +20,9 @@ public class SupplierDTO {
     @NotBlank(message = "Name is required")
     private String name;
 
-    @NotBlank(message = " contactInfo is required")
+    @NotBlank(message = "Contact info is required")
     private String contactInfo;
 
+    @NotBlank(message = "Address is required")
     private String address;
 }

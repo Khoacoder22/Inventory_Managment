@@ -23,18 +23,9 @@ public class Supplier {
     private String name;
 
     @NotBlank(message = "Is required")
-    private String contactInfor;
+    private String contactInfo;
 
     @NotBlank(message = "Is required")
     private String Address;
 
-    @Override
-    public String toString() {
-        return "Supplier{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", contactInfor='" + contactInfor + '\'' +
-                ", Address='" + Address + '\'' +
-                '}';
-    }
 }

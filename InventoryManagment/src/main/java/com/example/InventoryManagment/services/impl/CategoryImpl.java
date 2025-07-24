@@ -21,9 +21,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CategoryImpl implements CategoryService {
 
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     @Override
     public Response createCategory(CategoryDTO categoryDTO) {
