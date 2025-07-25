@@ -3,6 +3,7 @@ package com.example.InventoryManagment.services;
 
 import com.example.InventoryManagment.dtos.Response;
 import com.example.InventoryManagment.dtos.TransactionRequest;
+import com.example.InventoryManagment.enums.TransactionStatus;
 
 public interface TransactionService {
 
@@ -18,6 +19,6 @@ public interface TransactionService {
 
     Response getAllTransactionByMonthAndYear(int month, int year);
 
-    Response updateTransactionStatus(Long TransactionId,TransactionRequest transactionRequest);
+    Response updateTransactionStatus(Long TransactionId, TransactionStatus status);
 
 }

@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.UUID;
 import java.util.*;
 
@@ -104,7 +105,7 @@ public class ProductServicesImpl implements ProductServices {
         }
 
         if(productDTO.getPrice() != null && !(productDTO.getPrice() > 0)){
-            existingProduct.setPrice(productDTO.getPrice());
+            existingProduct.setPrice(BigDecimal.valueOf(productDTO.getPrice()));
         }
         productRepository.save(existingProduct);
 

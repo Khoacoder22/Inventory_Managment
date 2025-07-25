@@ -77,6 +77,7 @@ public class SupplierImpl implements SupplierService {
                 .build();
     }
 
+    // chỉ cập nhập thông nên không cần trả ve thong tin
     @Override
     public Response UpdateSupplier(Long id, SupplierDTO supplierDTO) {
         Supplier existingSupplier = supplierRepository.findById(id)
