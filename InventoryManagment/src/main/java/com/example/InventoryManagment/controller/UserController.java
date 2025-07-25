@@ -3,6 +3,7 @@ package com.example.InventoryManagment.controller;
 
 import com.example.InventoryManagment.dtos.Response;
 import com.example.InventoryManagment.dtos.UserDTO;
+import com.example.InventoryManagment.models.User;
 import com.example.InventoryManagment.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -40,5 +41,10 @@ public class UserController {
     @GetMapping("/getTransaction/{id}")
     public ResponseEntity<Response> getTransaction(@PathVariable Long id){
         return ResponseEntity.ok(userService.getUserTransaction(id));
+    }
+
+    @GetMapping("/current")
+    public ResponseEntity<User> getCurrentUser(){
+        return ResponseEntity.ok(userService.getCurrentLoggedInUser());
     }
 }
