@@ -3,12 +3,12 @@ package com.example.InventoryManagment.models;
 import com.example.InventoryManagment.enums.TransactionStatus;
 import com.example.InventoryManagment.enums.TransactionType;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.*;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -25,7 +25,7 @@ public class Transaction {
 
     private int totalProducts;
 
-    private Long totalPrice;
+    private BigDecimal totalPrice;
 
     @Enumerated(EnumType.STRING)
     private TransactionType transactionType;
