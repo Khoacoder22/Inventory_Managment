@@ -104,9 +104,10 @@ public class ProductServicesImpl implements ProductServices {
             existingProduct.setDescription(productDTO.getDescription());
         }
 
-        if(productDTO.getPrice() != null && !(productDTO.getPrice() > 0)){
-            existingProduct.setPrice(BigDecimal.valueOf(productDTO.getPrice()));
+        if (productDTO.getPrice() != null && productDTO.getPrice().compareTo(BigDecimal.ZERO) > 0) {
+            existingProduct.setPrice(productDTO.getPrice());
         }
+
         productRepository.save(existingProduct);
 
         return Response.builder()

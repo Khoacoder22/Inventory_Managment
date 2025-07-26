@@ -10,6 +10,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.math.BigDecimal;
+
 @RestController
 @RequestMapping("/api/products")
 @RequiredArgsConstructor
@@ -29,7 +31,7 @@ public class ProductController {
 
         ProductDTO productDTO = new ProductDTO();
             productDTO.setName(name);
-            productDTO.setPrice(price);
+            productDTO.setPrice(BigDecimal.valueOf(price));
             productDTO.setStockQuantity(stockQuantity);
             productDTO.setSku(sku);
             productDTO.setCategoryId(categoryId);
@@ -53,7 +55,7 @@ public class ProductController {
         ProductDTO productDTO = new ProductDTO();
         productDTO.setName(name);
         productDTO.setSku(sku);
-        productDTO.setPrice(price);
+        productDTO.setPrice(BigDecimal.valueOf(price));
         productDTO.setProductId(productId);
         productDTO.setStockQuantity(stockQuantity);
         productDTO.setCategoryId(categoryId);
