@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<Response> loginUser(@PathVariable Long id){
+    public ResponseEntity<Response> getUserById(@PathVariable Long id){
         return ResponseEntity.ok(userService.getUserById(id));
     }
 
