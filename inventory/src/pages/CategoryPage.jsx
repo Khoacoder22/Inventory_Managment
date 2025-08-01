@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout"
 import ApiService from '../services/ApiService'
 
@@ -23,12 +23,11 @@ const CategoryPage = () => {
             console.log(error);
         };
     };
-
+    getCategories();
   }, [])
   
 
   //get all
-  useEffect(() => {
     const addCategories = async () =>{
         if(!categoriesName){
             showMessage("Category name can not be empty");
@@ -44,10 +43,9 @@ const CategoryPage = () => {
             }
         }
         catch(error){
-            showMessage(error);
+            showMessage(error.response?.data?.message || error.message || "Something went wrong");
         }
     };
-  })
 
   //edit category
   const editCategory = async() =>{
@@ -75,8 +73,8 @@ const CategoryPage = () => {
             await ApiService.deleteCategory(categoriesId);
             showMessage("Category successfully deleted");
             window.location.reload();
-        } catch(error){
-            error.response?.data?.message || "Error Loggin in a User" + error;
+        } catch(error){  
+            showMessage(error.response?.data?.message || "Error Logging in a User: " + error)
         }
     }
   }
@@ -97,14 +95,14 @@ const CategoryPage = () => {
           <h1>Categories</h1>
           <div className="add-cat">
             <input
-              value={categoryName}
+              value={categoriesName}
               type="text"
               placeholder="Category Name"
-              onChange={(e) => setCategoryName(e.target.value)}
+              onChange={(e) => setCategoriesName(e.target.value)}
             />
 
             {!isEditing ? (
-              <button onClick={addCategory}>Add Category</button>
+              <button onClick={addCategories}>Add Category</button>
             ) : (
               <button onClick={editCategory}>Edit Cateogry</button>
             )}

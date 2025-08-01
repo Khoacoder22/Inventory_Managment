@@ -180,7 +180,7 @@ export default class ApiService {
   }
 
   // ===== SUPPLIERS =====
-  // Lưu ý: Tùy backend. Thường: POST /suppliers (không truyền id)
+
   static async addSupplier(supplierData) {
     const res = await axios.post(`${this.BASE_URL}/suppliers`, supplierData, {
       headers: this.getHeader(),
@@ -197,7 +197,7 @@ export default class ApiService {
   }
 
   static async getAllSuppliers() {
-    const res = await axios.get(`${this.BASE_URL}/suppliers/all`, {
+    const res = await axios.get(`${this.BASE_URL}/suppliers/getAll`, {
       headers: this.getHeader(),
     });
     return res.data;
@@ -212,7 +212,7 @@ export default class ApiService {
 
   static async updateSupplier(supplierId, supplierData) {
     const res = await axios.put(
-      `${this.BASE_URL}/suppliers/${supplierId}`,
+      `${this.BASE_URL}/suppliers/update/${supplierId}`,
       supplierData,
       { headers: this.getHeader() }
     );
