@@ -46,7 +46,7 @@ public class TransactionController {
         return ResponseEntity.ok(transactionService.getAllTransactionByMonthAndYear(month, year));
      }
 
-    @PutMapping("/update/transactionId")
+    @PutMapping("/{transactionId}")
     public ResponseEntity<Response> updateTransaction(@PathVariable Long transactionId, @RequestBody TransactionStatus status){
         return ResponseEntity.ok(transactionService.updateTransactionStatus(transactionId, status));
     }

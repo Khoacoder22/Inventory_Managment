@@ -43,6 +43,6 @@ public class CategoriesController {
 
     @GetMapping("/getAll")
     public ResponseEntity<Response> getAllCategory(){
-        return ResponseEntity.ok((categoryService.getAllCategories()));
+        return ResponseEntity.ok(categoryService.getAllCategories());
     }
 }

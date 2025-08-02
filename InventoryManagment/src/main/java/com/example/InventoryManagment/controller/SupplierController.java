@@ -38,6 +38,6 @@ public class SupplierController {
 
     @GetMapping("/getAll")
     public ResponseEntity<Response> getSupplier(){
-        return ResponseEntity.ok((supplierService.getAllSupplier()));
+        return ResponseEntity.ok(supplierService.getAllSupplier());
     }
 }

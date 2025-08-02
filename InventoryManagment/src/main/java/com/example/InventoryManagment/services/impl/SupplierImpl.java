@@ -1,6 +1,5 @@
 package com.example.InventoryManagment.services.impl;
 
-
 import com.example.InventoryManagment.dtos.Response;
 import com.example.InventoryManagment.dtos.SupplierDTO;
 import com.example.InventoryManagment.exception.NotFoundException;
@@ -60,6 +59,7 @@ public class SupplierImpl implements SupplierService {
         return Response.builder()
                 .status(200)
                 .message("Deleted successfully")
+                .suppliers(supplierDTOList)
                 .build();
     }
 

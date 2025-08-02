@@ -141,7 +141,7 @@ public class TransactionImpl implements TransactionService {
 
     @Override
     public Response getAllTransaction(int page, int size, String filter) {
-           Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id"));
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id"));
 
         Specification<Transaction> spec = TransactionFilter.byFilter(filter);
         Page<Transaction> transactionPage = transactionRepository.findAll(spec, pageable);

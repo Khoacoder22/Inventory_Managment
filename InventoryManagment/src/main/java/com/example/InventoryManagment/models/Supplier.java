@@ -26,6 +26,6 @@ public class Supplier {
     private String contactInfo;
 
     @NotBlank(message = "Is required")
-    private String Address;
+    private String address;
 
 }

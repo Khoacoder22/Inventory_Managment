@@ -43,8 +43,10 @@ public class CategoryImpl implements CategoryService {
 
         categories.forEach(category -> category.setProducts(null));
 
-        List<CategoryDTO> categoryDTOList = modelMapper.map(categories, new TypeToken<CategoryDTO>(){}.getType());
-
+        List<CategoryDTO> categoryDTOList = modelMapper.map(
+                categories,
+                new TypeToken<List<CategoryDTO>>(){}.getType()
+        );
         return Response.builder()
                 .status(200)
                 .message("List of categories")

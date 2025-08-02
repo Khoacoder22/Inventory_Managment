@@ -34,6 +34,8 @@ public class ProductServicesImpl implements ProductServices {
 
     private static final String IMAGE_DIRECTORY = System.getProperty("user.dir") + "/product-images";
 
+    private static String IMAGE_DIRECTORY_2 = "D:/inventory/inventory";
+
     @Override
     public Response SaveProduct(ProductDTO productDTO, MultipartFile multipartFile) {
 
@@ -51,7 +53,8 @@ public class ProductServicesImpl implements ProductServices {
 
         if(multipartFile != null && !multipartFile.isEmpty()){
             log.info("Image doesn't exist");
-            String imagePath = saveImage(multipartFile);
+//            String imagePath = saveImage(multipartFile);
+            String imagePath = saveImage2(multipartFile);
             productToSave.setImageURL(imagePath);
         }
 
@@ -186,4 +189,35 @@ public class ProductServicesImpl implements ProductServices {
         }
         return imagePath;
     }
+
+    private String saveImage2(MultipartFile imageFile) {
+        //validate image and check if it is greater than 1GIB
+        if (!imageFile.getContentType().startsWith("image/") || imageFile.getSize() > 1024 * 1024 * 1024) {
+            throw new IllegalArgumentException("Only image files under 1GIG is allowed");
+        }
+
+        //create the directory if it doesn't exist
+        File directory = new File(IMAGE_DIRECTORY_2);
+
+        if (!directory.exists()) {
+            directory.mkdir();
+            log.info("Directory was created");
+        }
+        //generate unique file name for the image
+        String uniqueFileName = UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
+
+        //Get the absolute path of the image
+        String imagePath = IMAGE_DIRECTORY_2 + uniqueFileName;
+
+        try {
+            File destinationFile = new File(imagePath);
+            imageFile.transferTo(destinationFile); //we are writing the image to this folder
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Error saving Image: " + e.getMessage());
+        }
+        return "products/"+uniqueFileName;
+    }
 }
+
+
+
