@@ -157,7 +157,7 @@ export default class ApiService {
   }
 
   static async getCategoryById(categoryId) {
-    const res = await axios.get(`${this.BASE_URL}/categories/${categoryId}`, {
+    const res = await axios.get(`${this.BASE_URL}/categories/categories/${categoryId}`, {
       headers: this.getHeader(),
     });
     return res.data;
@@ -172,7 +172,7 @@ export default class ApiService {
 
   static async updateCategory(categoryId, categoryData) {
     const res = await axios.put(
-      `${this.BASE_URL}/categories/${categoryId}`,
+      `${this.BASE_URL}/categories/update/${categoryId}`,
       categoryData,
       { headers: this.getHeader() }
     );

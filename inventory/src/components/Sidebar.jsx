@@ -30,7 +30,7 @@ const Sidebar = () => {
 
             {
                 isAuth && (
-                <li><Link to="/product">Product</Link></li>
+                <li><Link to="/products">Product</Link></li>
                 )
             }
 

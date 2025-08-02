@@ -4,12 +4,12 @@ import ApiService from '../services/ApiService';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const AddEditSupplierPage = () => {
-  const { supplierId } = useParams();  // No need to pass an empty string in useParams
-  const [name, setName] = useState("");  // Correct initialization with useState
-  const [contactInfo, setContactInfo] = useState("");  // Correct initialization with useState
-  const [address, setAddress] = useState("");  // Correct initialization with useState
-  const [message, setMessage] = useState("");  // Correct initialization with useState
-  const [isEditing, setIsEditing] = useState(false);  // Correct state name as "isEditing"
+  const { supplierId } = useParams();  
+  const [name, setName] = useState("");  
+  const [contactInfo, setContactInfo] = useState("");  
+  const [address, setAddress] = useState(""); 
+  const [message, setMessage] = useState("");  
+  const [isEditing, setIsEditing] = useState(false); 
   const navigate = useNavigate();
 
   useEffect(() => {
