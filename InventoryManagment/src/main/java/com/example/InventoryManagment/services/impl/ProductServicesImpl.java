@@ -89,7 +89,7 @@ public class ProductServicesImpl implements ProductServices {
         }
 
         if(productDTO.getCategoryId() != null && productDTO.getCategoryId() > 0){
-            Category category = categoryRepository.findById(productDTO.getProductId())
+            Category category = categoryRepository.findById(productDTO.getCategoryId())
                     .orElseThrow(() -> new NotFoundException("Category not found"));
             existingProduct.setCategory(category);
         }

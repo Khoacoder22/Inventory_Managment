@@ -23,7 +23,7 @@ public class Supplier {
     private String name;
 
     @NotBlank(message = "Is required")
-    private String contactInfo;
+    private String contactInfor;
 
     @NotBlank(message = "Is required")
     private String address;

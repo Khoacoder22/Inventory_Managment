@@ -13,7 +13,7 @@ public interface TransactionService {
 
     Response returnToSupplier(TransactionRequest transactionRequest);
 
-    Response getAllTransaction(int page, int size, String searchValue);
+    Response getAllTransaction(int page, int size, String filter);
 
     Response getAllTransactionBy(Long id);
 

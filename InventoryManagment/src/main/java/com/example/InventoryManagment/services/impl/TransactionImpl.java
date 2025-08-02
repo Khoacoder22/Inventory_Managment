@@ -141,12 +141,15 @@ public class TransactionImpl implements TransactionService {
 
     @Override
     public Response getAllTransaction(int page, int size, String filter) {
+
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id"));
 
+        //user the Transaction specification
         Specification<Transaction> spec = TransactionFilter.byFilter(filter);
         Page<Transaction> transactionPage = transactionRepository.findAll(spec, pageable);
 
-        List<TransactionDTO> transactionDTOS = modelMapper.map(transactionPage.getContent(), new TypeToken<List<List<TransactionDTO>>>(){}.getType());
+        List<TransactionDTO> transactionDTOS = modelMapper.map(transactionPage.getContent(), new TypeToken<List<TransactionDTO>>() {
+        }.getType());
 
         transactionDTOS.forEach(transactionDTO -> {
             transactionDTO.setUser(null);
@@ -161,8 +164,8 @@ public class TransactionImpl implements TransactionService {
                 .totalElements(transactionPage.getTotalElements())
                 .totalPages(transactionPage.getTotalPages())
                 .build();
-    }
 
+    }
     @Override
     public Response getAllTransactionBy(Long id) {
         Transaction transaction = transactionRepository.findById(id)

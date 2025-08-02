@@ -32,11 +32,16 @@ public class TransactionController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Response> getAllTransaction(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1000") int size,@RequestParam(defaultValue = "0") String searchValue){
-        return ResponseEntity.ok(transactionService.getAllTransaction(page, size, searchValue));
-   }
+    public ResponseEntity<Response> getAllTransactions(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "1000") int size,
+            @RequestParam(required = false) String filter) {
 
-   @GetMapping("/{id}")
+        System.out.println("SEARCH VALUE IS: " +filter);
+        return ResponseEntity.ok(transactionService.getAllTransaction(page, size, filter));
+    }
+
+    @GetMapping("/{id}")
     public ResponseEntity<Response> getById(@PathVariable Long id){
         return ResponseEntity.ok(transactionService.getAllTransactionBy(id));
    }
