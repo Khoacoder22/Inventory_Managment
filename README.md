@@ -29,4 +29,4 @@ This project is an Inventory Management System built using **Spring Boot** for t
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/Inventory_Management.git
+   (https://github.com/Khoacoder22/Inventory_Managment.git)
