@@ -28,13 +28,12 @@ This project is an Inventory Management System built using **Spring Boot** for t
 ## Installation
 
 1. **Clone the repository**:
-   ```bash
   git clone https://github.com/Khoacoder22/Inventory_Managment.git
 
 **Frontend** 
-cd frontend
-npm install
-npm start 
+**cd frontend**
+**npm install**
+**npm start**
 
 **Backend**
-press start
+press run
