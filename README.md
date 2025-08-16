@@ -42,11 +42,12 @@ This project is an Inventory Management System built using **Spring Boot** for t
    ```bash
    git clone https://github.com/Khoacoder22/Inventory_Managment.git
 2. Configure MySQL:
-spring.datasource.url=jdbc:mysql://localhost:3306/inventory_management
-spring.datasource.username=root
-spring.datasource.password=yourpassword
-
+ ```properties
+     spring.datasource.url=jdbc:mysql://localhost:3306/inventory_management
+     spring.datasource.username=root
+     spring.datasource.password=yourpassword
+  ```
 3. Run the application:
-./mvnw spring-boot:run
+```./mvnw spring-boot:run```
 
 
